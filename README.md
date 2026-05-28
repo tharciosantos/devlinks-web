@@ -1,6 +1,6 @@
 # DevLinks: Plataforma de Perfil e Linktree
 
-[![Pipeline E2E](https://github.com/tharcio09/frontend-api/actions/workflows/cypress.yml/badge.svg)](https://github.com/tharcio09/frontend-api/actions)
+[![Pipeline E2E](https://github.com/tharciosantos/frontend-api/actions/workflows/cypress.yml/badge.svg)](https://github.com/tharcio09/frontend-api/actions)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -18,7 +18,7 @@ Este projeto atua como um produto SaaS completo, demonstrando o domínio do ecos
 ## Links do Projeto
 
 * **Live Demo (Front-end):** [Acesse a aplicação na Vercel](https://frontend-api-weld.vercel.app/)
-* **Repositório da API (Back-end):** [Acesse o código em Node.js/Express aqui](https://github.com/tharcio09/minha-api)
+* **Repositório da API (Back-end):** [Acesse o código em Node.js/Express aqui](https://github.com/tharciosantos/devlinks-api)
 
 ---
 
