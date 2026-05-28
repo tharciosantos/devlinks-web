@@ -1,6 +1,6 @@
 # DevLinks: Plataforma de Perfil e Linktree
 
-[![Pipeline E2E](https://github.com/tharciosantos/frontend-api/actions/workflows/cypress.yml/badge.svg)](https://github.com/tharcio09/frontend-api/actions)
+[![Pipeline E2E](https://github.com/tharciosantos/devlinks-web/actions/workflows/cypress.yml/badge.svg)](https://github.com/tharciosantos/devlinks-web/actions/workflows/cypress.yml)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
