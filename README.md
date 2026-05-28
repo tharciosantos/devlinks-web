@@ -53,7 +53,7 @@ A página oficial do usuário gerada dinamicamente, otimizada e segura, pronta p
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/tharcio09/frontend-api.git
+   git clone https://github.com/tharciosantos/devlinks-web.git
    ```
 2. Instale as dependências:
    ```bash
