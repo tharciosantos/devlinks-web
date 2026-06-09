@@ -190,7 +190,7 @@ export function Dashboard() {
                                         <div>
                                             <input
                                                 type="url"
-                                                placeholder="URL (ex: https://github.com/tharcio09)"
+                                                placeholder="URL (ex: https://github.com/tharciosantos)"
                                                 value={novaUrl}
                                                 onChange={(e) => setNovaUrl(e.target.value)}
                                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-700"
