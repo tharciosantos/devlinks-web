@@ -17,7 +17,7 @@ Este projeto atua como um produto SaaS completo, demonstrando o domínio do ecos
 
 ## Links do Projeto
 
-* **Live Demo (Front-end):** [Acesse a aplicação na Vercel](https://frontend-api-weld.vercel.app/)
+* **Live Demo (Front-end):** [Acesse a aplicação na Vercel](https://devlinks-web-api.vercel.app/)
 * **Repositório da API (Back-end):** [Acesse o código em Node.js/Express aqui](https://github.com/tharciosantos/devlinks-api)
 
 ---

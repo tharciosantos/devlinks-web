@@ -33,7 +33,7 @@ describe('Fluxo da Plataforma Linktree', () => {
 
     // 2. Criação do Link
     cy.get('input[placeholder="Título (ex: Meu GitHub)"]').type(tituloTeste);
-    cy.get('input[placeholder="URL (ex: https://github.com/tharcio09)"]').type('https://github.com/tharcio09');
+    cy.get('input[placeholder="URL (ex: https://github.com/tharciosantos)"]').type('https://github.com/tharciosantos');
     cy.contains('button', 'Adicionar Link').click();
 
     cy.wait('@criacaoDeLink').then((interceptacao) => {
@@ -41,7 +41,7 @@ describe('Fluxo da Plataforma Linktree', () => {
     });
 
     cy.contains('Link adicionado!').should('be.visible');
-    cy.contains('a', tituloTeste).should('have.attr', 'href', 'https://github.com/tharcio09');
+    cy.contains('a', tituloTeste).should('have.attr', 'href', 'https://github.com/tharciosantos');
 
     // ---------------------------------------------------------
     // 3. FASE DE LIMPEZA (TEARDOWN) - Excluir o link criado
