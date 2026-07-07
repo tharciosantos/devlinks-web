@@ -39,7 +39,7 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...cypress.environments.globals.globals,
+        ...cypress.configs.globals.languageOptions.globals,
       },
     },
     rules: {
