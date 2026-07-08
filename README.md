@@ -1,267 +1,146 @@
-# DevLinks Web
+<h1 align="center">Tharcio Santos</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/Disponível%20para%20oportunidade-Júnior%20%7C%20Estágio-0f766e?style=for-the-badge" alt="Disponível para oportunidade" />
+</p>
 
-Interface front-end do projeto DevLinks para cadastro, login e gerenciamento de uma página pública de links. A aplicação consome a DevLinks API para autenticação, consulta de perfil, upload de avatar e operações sobre links.
+<p align="center">
+  Desenvolvedor Full Stack Júnior em busca da primeira oportunidade profissional. Desenvolvo aplicações web completas com React, Next.js e Node.js, aplicando boas práticas de arquitetura, testes automatizados e documentação técnica em projetos publicados.
+</p>
 
-[![Pipeline E2E](https://github.com/tharciosantos/devlinks-web/actions/workflows/cypress.yml/badge.svg)](https://github.com/tharciosantos/devlinks-web/actions/workflows/cypress.yml)
+<p align="center">
+  <a href="https://tharcio-portfolio.vercel.app"><strong>🌐 Ver portfólio completo</strong></a>
+</p>
 
-## Status do projeto
+<p align="center">
+  <a href="https://linkedin.com/in/tharcio-santos-dev">LinkedIn</a> &nbsp;·&nbsp;
+  <a href="mailto:tharciosantos09@gmail.com">tharciosantos09@gmail.com</a> &nbsp;·&nbsp;
+  📍 Caeté, MG (Região Metropolitana de Belo Horizonte)
+</p>
 
-**Em evolução, com versão disponível em produção.**
+<p align="center">
+  <a href="#-projetos-em-destaque">Projetos</a> &nbsp;·&nbsp;
+  <a href="#-o-que-eu-trago-pro-time">Sobre</a> &nbsp;·&nbsp;
+  <a href="#-stack">Stack</a> &nbsp;·&nbsp;
+  <a href="#-contato">Contato</a>
+</p>
 
-Os fluxos principais de autenticação, gerenciamento de links, avatar e visualização do perfil público estão implementados. Melhorias relacionadas a testes, configuração de ambiente e refinamento da interface permanecem planejadas.
+---
 
-## Objetivo do projeto
+## 💼 Principais competências
 
-O DevLinks Web foi criado para oferecer uma interface em que usuários possam manter uma página pública com seus principais links. Após o cadastro e o login, o usuário pode visualizar os dados do perfil, enviar um avatar, adicionar ou excluir links e compartilhar a URL pública.
+- Desenvolvimento Full Stack com React, Next.js e Node.js
+- Construção de APIs REST e autenticação (NextAuth, JWT e Supabase Auth)
+- Modelagem e integração com PostgreSQL, Prisma, Supabase e MongoDB
+- Testes automatizados com Vitest (unitários) e Cypress (E2E)
+- Deploy contínuo na Vercel
 
-O projeto também tem como objetivo praticar integração entre front-end e API, roteamento no cliente, consumo de autenticação JWT, gerenciamento de dados assíncronos, upload de arquivos e testes de fluxo com Cypress.
+---
 
-## Demonstração
+## 🚀 Projetos em destaque
 
-- **Aplicação front-end em produção:** [https://devlinks-web-api.vercel.app/](https://devlinks-web-api.vercel.app/)
-- **Repositório do front-end:** [https://github.com/tharciosantos/devlinks-web](https://github.com/tharciosantos/devlinks-web)
-- **API em produção:** [https://minha-api-lih7.onrender.com](https://minha-api-lih7.onrender.com)
-- **Repositório da API:** [https://github.com/tharciosantos/devlinks-api](https://github.com/tharciosantos/devlinks-api)
+🟢 Todos os projetos abaixo possuem código público no GitHub e versão em produção.
 
-### Cadastro
+**[HelpFlow](https://helpflow.vercel.app/login)** — Sistema de help desk full stack
 
-![Tela de cadastro do DevLinks](./docs/tela-cadastro.PNG)
+<img src="https://raw.githubusercontent.com/tharciosantos/meu-portfolio/main/public/images/helpflow-screenshot.png" alt="Tela do HelpFlow" width="600" />
 
-### Login
+Plataforma de gerenciamento de chamados desenvolvida para centralizar o fluxo de suporte técnico, desde a abertura até a resolução dos tickets.
 
-![Tela de login do DevLinks](./docs/tela-login.PNG)
+Possui autenticação com NextAuth, controle de acesso por papéis (CLIENT/AGENT), CRUD completo de tickets, recuperação de senha, validação com Zod, proteção contra abuso com rate limiter, hash de senhas com bcryptjs e testes automatizados utilizando Vitest e Cypress.
 
-### Dashboard
+`Next.js · JavaScript · Prisma · Supabase · PostgreSQL · NextAuth · Zod · Cypress · Vitest` · [ver código](https://github.com/tharciosantos/helpflow)
 
-![Dashboard do DevLinks](./docs/tela-dashboard.PNG)
+---
 
-### Perfil público
+**[ManutFlow](https://manutflow.vercel.app)** — Sistema de Controle de Manutenção
 
-![Perfil público do DevLinks](./docs/tela-perfil-publico.PNG)
+<img src="https://raw.githubusercontent.com/tharciosantos/manutflow/main/docs/preview-dashboard.png" alt="Dashboard do ManutFlow" width="600" />
 
-## Funcionalidades implementadas
+Sistema de gestão de manutenção desenvolvido para simular o fluxo operacional de empresas que controlam equipamentos, ordens de serviço e histórico de manutenção.
+Inclui autenticação com Supabase Auth, isolamento de dados por usuário utilizando RLS, cadastro, listagem, exclusão e atualização de status, breadcrumbs, loading skeletons, empty states, dashboard com atualização automática e deploy na Vercel.
 
-### Autenticação e navegação
+`Next.js · TypeScript · Tailwind CSS · Supabase · PostgreSQL · @supabase/ssr` · [ver código](https://github.com/tharciosantos/manutflow)
 
-- Cadastro de usuário por nome, e-mail e senha por meio da DevLinks API.
-- Login com e-mail e senha.
-- Armazenamento do token JWT retornado pela API no `localStorage`.
-- Inclusão automática do token no cabeçalho `Authorization` das requisições feitas pela instância Axios.
-- Rota de dashboard condicionada à existência do token no navegador.
-- Logout com remoção do token e retorno à tela de login.
+---
 
-> A autenticação é fornecida pela DevLinks API. No front-end, o componente de rota privada verifica apenas a existência do token no `localStorage`; a validação efetiva do JWT ocorre nas rotas protegidas da API.
+**[DevLinks](https://devlinks-web-api.vercel.app/)** — Plataforma de links personalizados
 
-### Dashboard e perfil
+<img src="https://raw.githubusercontent.com/tharciosantos/meu-portfolio/main/public/images/screenshot-devlinks.png" alt="Tela do DevLinks" width="600" />
 
-- Consulta dos dados do usuário autenticado.
-- Exibição de nome, e-mail, avatar e links no dashboard.
-- Estado de carregamento com skeleton screen.
-- Mensagem de erro e opção de nova tentativa quando o perfil não pode ser carregado.
-- Upload de avatar com `FormData` para o endpoint da API.
-- Exibição da inicial do nome quando o usuário não possui avatar.
+Aplicação Full Stack para gerenciamento de links personalizados com frontend e API independentes.
 
-### Gerenciamento de links
+Possui autenticação via JWT, upload de imagens utilizando Cloudinary, gerenciamento de estado com TanStack Query, testes E2E com Cypress (cobertura em expansão) e pipeline de CI integrado ao GitHub Actions.
 
-- Cadastro de links com título e URL.
-- Listagem dos links associados ao perfil.
-- Exclusão de links com confirmação.
-- Atualização dos dados exibidos após upload, criação ou exclusão por invalidação do cache do TanStack Query.
-- Geração da URL do perfil público a partir do identificador do usuário.
-- Cópia da URL pública para a área de transferência.
+`React · Vite · Express · MongoDB · TanStack Query · Cloudinary · Cypress · GitHub Actions` · [web](https://github.com/tharciosantos/devlinks-web) · [api](https://github.com/tharciosantos/devlinks-api)
 
-### Perfil público e interface
+---
 
-- Rota pública dinâmica em `/p/:id`.
-- Exibição pública do nome, avatar e links retornados pela API.
-- Abertura dos links em uma nova aba.
-- Notificações de sucesso e erro com React Hot Toast.
-- Layout responsivo construído com Tailwind CSS.
-- Reescrita de rotas na Vercel para suporte à navegação da SPA.
+**Outros projetos:** [Crypto Dashboard](https://crypto-dashboard-five-sandy.vercel.app/) (Next.js · CoinGecko API) · [Lista de Mercado](https://lista-mercado-sage.vercel.app/) (PWA offline-first)
 
-## Tecnologias utilizadas
+---
 
-### Front-end
+## 🧠 O que eu trago para o time
 
-- React 19
-- Vite 8
-- React Router
-- Tailwind CSS 4
+Procuro entender o problema antes da implementação e transformar requisitos em soluções simples, organizadas e fáceis de manter.
 
-### Comunicação e estado assíncrono
+Aplico práticas utilizadas em equipes profissionais, como:
 
-- Axios
-- TanStack Query (React Query)
-- Fetch API no perfil público
+- Desenvolvimento de interfaces com React e Next.js focadas na experiência do usuário.
+- Construção de APIs, autenticação, integração com banco de dados e regras de autorização.
+- Testes automatizados com Vitest e Cypress para reduzir regressões.
+- Documentação de decisões técnicas e organização do código para facilitar manutenção e colaboração.
 
-### Interface
+---
 
-- React Hot Toast
-- Clipboard API do navegador
-- FormData para envio do avatar
+## 📚 Atualmente estudando
 
-### Testes e qualidade
+- Arquitetura de Software e padrões de projeto
+- Docker e containerização
+- CI/CD com GitHub Actions
+- Boas práticas de desenvolvimento Full Stack
 
-- Cypress
-- ESLint
-- GitHub Actions
+---
 
-### Deploy
+## 🎓 Formação
 
-- Vercel para o front-end
-- Render para a API consumida pela aplicação
+**Análise e Desenvolvimento de Sistemas**
 
-> O banco de dados, a emissão e validação do JWT e o envio do avatar ao Cloudinary são responsabilidades da DevLinks API, não deste repositório front-end.
+Centro Universitário Anhanguera
 
-## Estrutura geral do projeto
+Previsão de conclusão: **Julho/2027**
 
-```text
-devlinks-web/
-├── .github/
-│   └── workflows/
-│       └── cypress.yml          # Pipeline E2E executada em pushes para main
-├── cypress/
-│   ├── e2e/
-│   │   └── login.cy.js          # Fluxos de login e gerenciamento de links
-│   └── support/                 # Arquivos de suporte do Cypress
-├── docs/                        # Imagens utilizadas no README
-├── public/                      # Arquivos estáticos
-├── src/
-│   ├── components/              # Rota privada, skeleton e componentes de perfil
-│   ├── pages/                   # Cadastro, login, dashboard e perfil público
-│   ├── services/
-│   │   └── api.js               # Instância Axios e interceptadores
-│   ├── App.jsx                  # Rotas da aplicação
-│   ├── index.css                # Estilos globais
-│   └── main.jsx                 # Inicialização do React e do Query Client
-├── cypress.config.js            # Configuração do Cypress
-├── vercel.json                  # Reescrita de rotas da SPA
-└── vite.config.js               # Configuração do Vite e Tailwind CSS
-```
+Antes da transição para desenvolvimento atuei em funções administrativas e operacionais, experiência que fortaleceu habilidades como organização, comunicação, documentação de processos e resolução de problemas — competências que hoje aplico no desenvolvimento de software.
 
-## Como executar localmente
+---
 
-### Pré-requisitos
+## 🛠️ Stack
 
-- Node.js 20 ou superior
-- npm
-- DevLinks API em execução localmente ou uma URL acessível da API
+| Área            | Tecnologias                                 |
+| --------------- | ------------------------------------------- |
+| Frontend        | React • Next.js • Vite • Tailwind CSS       |
+| Backend         | Node.js • Express • JavaScript • TypeScript |
+| Banco de Dados  | PostgreSQL • Prisma • Supabase • MongoDB    |
+| Testes e Deploy | Vitest • Cypress • GitHub Actions • Vercel  |
 
-### 1. Clone o repositório
+---
 
-```bash
-git clone https://github.com/tharciosantos/devlinks-web.git
-cd devlinks-web
-```
+## 📊 GitHub Stats
 
-### 2. Instale as dependências
+<p align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=tharciosantos&theme=github_dark" height="150"/>
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=tharciosantos&theme=github_dark" height="150"/>
+</p>
 
-```bash
-npm install
-```
+---
 
-### 3. Configure o ambiente
-
-Crie um arquivo `.env` na raiz do projeto:
-
-```env
-VITE_API_URL=http://localhost:3000
-```
-
-Para consumir a API publicada no Render:
-
-```env
-VITE_API_URL=https://minha-api-lih7.onrender.com
-```
-
-> O `.env.example` atual contém `DATABASE_URL`, mas essa variável não é utilizada pelo front-end. O arquivo precisa ser corrigido futuramente para documentar `VITE_API_URL`. Nenhuma conexão com banco de dados é feita diretamente por este projeto.
-
-### 4. Inicie a aplicação
-
-```bash
-npm run dev
-```
-
-O Vite informará a URL local no terminal, normalmente [http://localhost:5173](http://localhost:5173).
-
-### Scripts disponíveis
-
-| Comando | Descrição |
-| --- | --- |
-| `npm run dev` | Inicia o servidor de desenvolvimento. |
-| `npm run build` | Gera o build de produção. |
-| `npm run lint` | Executa o ESLint. |
-| `npm run preview` | Executa localmente o build gerado. |
-
-## Variáveis de ambiente
-
-| Variável | Finalidade |
-| --- | --- |
-| `VITE_API_URL` | Define a URL base da DevLinks API usada pelo Axios e pela página de perfil público. |
-
-Quando `VITE_API_URL` não está definida, a instância Axios utiliza `http://localhost:3000` como fallback. A página principal de perfil público acessada por `/p/:id` utiliza diretamente `VITE_API_URL`, portanto a variável deve ser configurada nesse fluxo.
-
-O front-end não utiliza `DATABASE_URL` e não acessa o MongoDB diretamente.
-
-## Testes
-
-O projeto possui uma suíte E2E com Cypress em `cypress/e2e/login.cy.js`.
-
-### Cobertura atual
-
-- Login com credenciais de um usuário de teste existente.
-- Verificação do redirecionamento para o dashboard após o login.
-- Confirmação da exibição dos principais controles do dashboard.
-- Adição de um link pela interface.
-- Exclusão do link criado durante o teste.
-- Limpeza do dado criado ao final do fluxo de gerenciamento de links.
-
-Os testes atuais não cobrem cadastro, falha de login, upload de avatar, logout ou perfil público.
-
-Para executar o Cypress com a aplicação local em funcionamento:
-
-```bash
-npx cypress open
-```
-
-Ou em modo headless:
-
-```bash
-npx cypress run
-```
-
-Não existem scripts específicos do Cypress no `package.json`; os comandos são executados com `npx`.
-
-A pipeline `.github/workflows/cypress.yml` executa os testes E2E em pushes para a branch `main`, inicia o Vite e configura `VITE_API_URL` com a API publicada no Render. A suíte atual depende de um usuário de teste previamente existente e de disponibilidade da API externa.
-
-## Aprendizados
-
-- Desenvolvimento de uma SPA com React e Vite.
-- Navegação no cliente com React Router.
-- Integração do front-end com uma API REST.
-- Consumo de autenticação JWT fornecida pelo back-end.
-- Uso de interceptadores do Axios para envio do token.
-- Gerenciamento de consultas, mutações e cache com TanStack Query.
-- Upload de arquivo com FormData.
-- Criação de rotas públicas e condicionadas à autenticação.
-- Estados de carregamento, erro e feedback visual.
-- Testes de fluxos com Cypress.
-- Execução de testes E2E com GitHub Actions.
-- Deploy de uma SPA na Vercel.
-
-## Próximos passos
-
-- **Planejado:** corrigir o `.env.example` para documentar `VITE_API_URL` e remover `DATABASE_URL`.
-- **Planejado:** ampliar os testes E2E para cadastro, falha de login, avatar, logout e perfil público.
-- **Planejado:** substituir as credenciais fixas da suíte Cypress por dados de teste configuráveis.
-- **Planejado:** adicionar scripts do Cypress ao `package.json`.
-- **Planejado:** melhorar o tratamento de sessão expirada no front-end.
-- **Planejado:** revisar e remover componentes ou rotas públicas duplicadas que não façam parte do fluxo principal.
-- **Planejado:** ampliar a validação e o feedback dos formulários.
-
-## Autor
-
-**Nome:** Tharcio Santos  
-**GitHub:** [https://github.com/tharciosantos](https://github.com/tharciosantos)  
-**LinkedIn:** [https://www.linkedin.com/in/tharcio-santos-dev/](https://www.linkedin.com/in/tharcio-santos-dev/)  
-**Portfólio:** [https://tharcio-portfolio.vercel.app/](https://tharcio-portfolio.vercel.app/)
+<p id="contato" align="center">
+  <strong>Aberto a oportunidades como Desenvolvedor Full Stack Júnior ou Estagiário em Desenvolvimento.</strong><br/>
+  Fico à disposição para conversar sobre projetos, oportunidades ou tecnologia.<br/><br/>
+</p>
+<p align="center" >
+  <a href="https://linkedin.com/in/tharcio-santos-dev">LinkedIn</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:tharciosantos09@gmail.com">E-mail</a>
+  &nbsp;·&nbsp;
+  <a href="https://tharcio-portfolio.vercel.app">Portfólio</a>
+</p>
