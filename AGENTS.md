@@ -195,7 +195,15 @@ Toda tarefa DEVE seguir este fluxo completo, SEM EXCECAO:
 3. COMMITS  → Commits semanticos (feat, fix, etc.) a cada etapa logica
 4. PUSH     → Push da branch para origin
 5. PR       → Criar Pull Request com titulo e body descritivos
-6. LIMPEZA  → Apos merge, voltar para main, deletar branch local e remota
+6. TESTES   → Rodar build + testes principais para verificar se tudo funciona
+7. LIMPEZA  → Apos merge, voltar para main, deletar branch local e remota
+```
+
+**Antes de criar o PR, sempre rodar:**
+```bash
+npm run build     # Verificar se build passa
+npm run lint      # Verificar se nao ha erros de lint
+npm run dev       # Testar manualmente as funcionalidades alteradas
 ```
 
 ### Template de PR

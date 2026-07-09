@@ -22,7 +22,9 @@
 
 ## Regras de Trabalho (PRIORIDADE MAXIMA)
 - Comunicar em português brasileiro
+- **Toda tarefa:** primeiro propor plano (arquivos, abordagem, impacto) e aguardar confirmacao antes de implementar
 - **Fluxo Git Obrigatorio:** branch → alteracoes → commits semanticos → push → PR com template → limpeza da branch apos merge
+- **Pos-tarefa:** sempre rodar `npm run build` + `npm run lint` antes do PR
 - NUNCA fazer alteracoes direto na main
 - Manter DESIGN.md e docs de design apenas local (em .gitignore)
 - Criar MIMOCODE.md em todo projeto para contexto
