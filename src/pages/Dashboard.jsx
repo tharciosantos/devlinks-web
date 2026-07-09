@@ -104,7 +104,7 @@ export function Dashboard() {
                         $ devlinks
                     </span>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
                         <label
                             className={`cursor-pointer text-xs px-3 py-2 border rounded-none transition-colors ${
                                 mutacaoUploadFoto.isPending
@@ -141,7 +141,7 @@ export function Dashboard() {
             </nav>
 
             {/* Main */}
-            <main className="max-w-xl mx-auto py-12 px-4">
+            <main className="max-w-xl mx-auto py-6 sm:py-12 px-4">
 
                 {isLoading && <SkeletonDashboard />}
 
@@ -197,7 +197,7 @@ export function Dashboard() {
 
                         {/* Perfil */}
                         <div
-                            className="p-6 mb-8"
+                            className="p-4 sm:p-6 mb-8"
                             style={{
                                 backgroundColor: 'var(--color-bg-surface)',
                                 border: '1px solid var(--color-border-default)',
@@ -287,7 +287,7 @@ export function Dashboard() {
                                 {perfil.links.map((link, index) => (
                                     <div
                                         key={link._id || index}
-                                        className="flex items-center gap-2 p-4 border transition-all duration-150"
+                                        className="flex items-center gap-2 p-3 sm:p-4 border transition-all duration-150"
                                         style={{
                                             backgroundColor: 'var(--color-bg-surface)',
                                             borderColor: 'var(--color-border-default)',
