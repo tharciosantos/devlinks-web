@@ -1,30 +1,66 @@
 export function SkeletonDashboard() {
     return (
         <div className="animate-pulse w-full">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-                <div className="bg-gray-200 h-24"></div>
+            {/* Link Publico Skeleton */}
+            <div
+                className="p-4 mb-8"
+                style={{
+                    backgroundColor: 'var(--color-bg-surface)',
+                    border: '1px solid var(--color-border-default)',
+                }}
+            >
+                <div className="h-4 w-3/4 mb-2" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                <div className="h-3 w-1/2" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+            </div>
 
-                <div className="px-6 pb-8">
-                    <div className="relative -mt-12 mb-4 flex justify-center">
-                        <div className="h-24 w-24 bg-gray-200 rounded-full border-4 border-white shadow-lg"></div>
-                    </div>
+            {/* Perfil Skeleton */}
+            <div
+                className="p-6 mb-8"
+                style={{
+                    backgroundColor: 'var(--color-bg-surface)',
+                    border: '1px solid var(--color-border-default)',
+                }}
+            >
+                {/* Avatar */}
+                <div className="flex justify-center mb-6">
+                    <div
+                        className="h-20 w-20"
+                        style={{
+                            backgroundColor: 'var(--color-border-default)',
+                            border: '2px solid var(--color-border-default)',
+                        }}
+                    ></div>
+                </div>
 
-                    <div className="text-center">
-                        <div className="h-7 bg-gray-200 rounded w-1/2 mx-auto mb-3"></div>
-                        <div className="h-4 bg-gray-100 rounded w-1/3 mx-auto mb-6"></div>
+                {/* Info */}
+                <div className="text-center mb-6">
+                    <div className="h-6 w-1/2 mx-auto mb-2" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                    <div className="h-4 w-1/3 mx-auto" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                </div>
 
-                        <div className="mt-6 space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm">
-                            <div className="h-10 bg-gray-200 rounded-lg w-full"></div>
-                            <div className="h-10 bg-gray-200 rounded-lg w-full"></div>
-                            <div className="h-10 bg-gray-300 rounded-lg w-full"></div>
-                        </div>
+                {/* Form */}
+                <div className="space-y-3">
+                    <div className="h-3 w-1/4 mb-3" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                    <div className="h-12 w-full" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                    <div className="h-12 w-full" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                    <div className="h-12 w-full" style={{ backgroundColor: 'var(--color-accent)', opacity: 0.3 }}></div>
+                </div>
+            </div>
 
-                        <div className="space-y-3 mt-6">
-                            {[1, 2, 3].map((i) => (
-                                <div key={i} className="h-14 bg-gray-100 rounded-xl w-full border border-gray-200"></div>
-                            ))}
-                        </div>
-                    </div>
+            {/* Links Skeleton */}
+            <div>
+                <div className="h-3 w-1/4 mb-4" style={{ backgroundColor: 'var(--color-border-default)' }}></div>
+                <div className="space-y-2">
+                    {[1, 2, 3].map((i) => (
+                        <div
+                            key={i}
+                            className="h-14 w-full"
+                            style={{
+                                backgroundColor: 'var(--color-bg-surface)',
+                                border: '1px solid var(--color-border-default)',
+                            }}
+                        ></div>
+                    ))}
                 </div>
             </div>
         </div>
