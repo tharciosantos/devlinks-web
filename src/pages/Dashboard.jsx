@@ -287,10 +287,16 @@ export function Dashboard() {
                                 {perfil.links.map((link, index) => (
                                     <div
                                         key={link._id || index}
-                                        className="flex items-center gap-2 p-4 transition-colors hover:border-[var(--color-accent-alt)]"
+                                        className="flex items-center gap-2 p-4 border transition-all duration-150"
                                         style={{
                                             backgroundColor: 'var(--color-bg-surface)',
-                                            border: '1px solid var(--color-border-default)',
+                                            borderColor: 'var(--color-border-default)',
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.borderColor = 'var(--color-accent-alt)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.borderColor = 'var(--color-border-default)';
                                         }}
                                     >
                                         <a
