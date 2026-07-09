@@ -5,20 +5,24 @@ export function PublicProfile() {
 
     const { username } = useParams();
     const [links, setLinks] = useState([]);
+    const [perfil, setPerfil] = useState(null);
     const [carregando, setCarregando] = useState(true);
+    const [erro, setErro] = useState(false);
 
     useEffect(() => {
         const buscarLinksDoUsuario = async () => {
             try {
-                const response = await fetch(`https://minha-api-lih7.onrender.com/p/${username}`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/p/${username}`);
                 if (!response.ok) {
-                    throw new Error('Usuário não encontrado ou erro na API');
+                    throw new Error('Usuario nao encontrado');
                 }
 
                 const data = await response.json();
-                setLinks(data);
+                setPerfil(data);
+                setLinks(data.links || []);
             } catch (error) {
                 console.error("Erro ao buscar links:", error);
+                setErro(true);
             } finally {
                 setCarregando(false);
             }
@@ -28,33 +32,101 @@ export function PublicProfile() {
     }, [username]);
 
     if (carregando) {
-        return <div className="flex justify-center mt-20 font-semibold text-gray-500">Carregando perfil...</div>;
+        return (
+            <div
+                className="min-h-screen flex items-center justify-center"
+                style={{ backgroundColor: 'var(--color-bg-primary)' }}
+            >
+                <p className="text-sm animate-pulse" style={{ color: 'var(--color-accent)' }}>
+                    {'> carregando perfil...'}
+                </p>
+            </div>
+        );
+    }
+
+    if (erro) {
+        return (
+            <div
+                className="min-h-screen flex items-center justify-center"
+                style={{ backgroundColor: 'var(--color-bg-primary)' }}
+            >
+                <p className="text-sm font-bold" style={{ color: 'var(--color-error)' }}>
+                    {'// perfil nao encontrado'}
+                </p>
+            </div>
+        );
     }
 
     return (
-        <div className="flex flex-col items-center p-8 bg-gray-50 min-h-screen">
-            <div className="w-24 h-24 bg-gray-300 rounded-full mb-4">
-                {/* Espaço para a foto de perfil (pode ser uma imagem depois) */}
-            </div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-8">@{username}</h1>
-
-            <div className="w-full max-w-md space-y-4">
-                {links.length === 0 ? (
-                    <p className="text-center text-gray-500">Nenhum link adicionado ainda.</p>
-                ) : (
-                    links.map(link => (
-                        <a
-                            key={link.id}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block w-full p-4 bg-white border border-gray-200 rounded-xl text-center font-medium text-gray-700 hover:bg-gray-50 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm"
+        <div
+            className="min-h-screen py-16 px-4"
+            style={{ backgroundColor: 'var(--color-bg-primary)' }}
+        >
+            <main className="max-w-lg mx-auto">
+                {/* Avatar */}
+                <div className="flex justify-center mb-6">
+                    {perfil?.avatar ? (
+                        <img
+                            src={perfil.avatar}
+                            alt={`Avatar de ${perfil.name}`}
+                            className="h-24 w-24 object-cover"
+                            style={{ border: '2px solid var(--color-accent)' }}
+                        />
+                    ) : (
+                        <div
+                            className="h-24 w-24 flex items-center justify-center text-3xl font-bold"
+                            style={{
+                                backgroundColor: 'var(--color-bg-surface)',
+                                border: '2px solid var(--color-accent)',
+                                color: 'var(--color-text-muted)',
+                            }}
                         >
-                            {link.titulo} {/* Confirme se na sua API o nome da propriedade é 'titulo' ou 'title' */}
-                        </a>
-                    ))
-                )}
-            </div>
+                            @{username.charAt(0).toUpperCase()}
+                        </div>
+                    )}
+                </div>
+
+                {/* Username */}
+                <h1
+                    className="text-2xl font-bold text-center mb-8"
+                    style={{ color: 'var(--color-text-primary)' }}
+                >
+                    @{username}
+                </h1>
+
+                {/* Links */}
+                <div className="space-y-3">
+                    {links.length === 0 ? (
+                        <p className="text-center text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                            {'// nenhum link adicionado'}
+                        </p>
+                    ) : (
+                        links.map(link => (
+                            <a
+                                key={link._id || link.id}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full p-5 text-center font-bold transition-colors hover:border-[var(--color-accent-alt)]"
+                                style={{
+                                    backgroundColor: 'var(--color-bg-surface)',
+                                    border: '1px solid var(--color-border-default)',
+                                    color: 'var(--color-text-primary)',
+                                }}
+                            >
+                                {link.titulo}
+                            </a>
+                        ))
+                    )}
+                </div>
+
+                {/* Footer */}
+                <div className="text-center mt-12">
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                        {'> devlinks'}
+                    </p>
+                </div>
+            </main>
         </div>
     );
 }
