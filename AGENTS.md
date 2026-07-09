@@ -185,24 +185,59 @@ Quando `VITE_API_URL` nao esta definida, o fallback e `http://localhost:3000`.
 | Cor errada no hover | Usou `--color-accent-alt` | Use `--color-accent` (verde) |
 | Perfil publico nao atualiza | URL hardcoded em PublicProfile.jsx | Bug conhecido, use PerfilPublico.jsx |
 
-## Git workflow
+## Fluxo Git Obrigatorio (PRIORIDADE MAXIMA)
+
+Toda tarefa DEVE seguir este fluxo completo, SEM EXCECAO:
+
+```
+1. BRANCH   → Criar branch com nome descritivo (feat/, fix/, chore/)
+2. ALTERACOES → Implementar mudancas (pode ser em etapas)
+3. COMMITS  → Commits semanticos (feat, fix, etc.) a cada etapa logica
+4. PUSH     → Push da branch para origin
+5. PR       → Criar Pull Request com titulo e body descritivos
+6. LIMPEZA  → Apos merge, voltar para main, deletar branch local e remota
+```
+
+### Template de PR
+
+```markdown
+## Summary
+- Resumo das mudancas (1-3 bullet points)
+
+## Mudancas
+- Arquivo alterado: descricao da alteracao
+
+## Como testar
+- Passos para testar a funcionalidade
+```
+
+### Formato de commits
+
+`<tipo>(escopo): descricao curta`
+
+Tipos: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`
+
+### Comandos
 
 ```bash
 # 1. Criar branch
-git checkout -b feature/nome-da-feature
+git checkout -b feat/nome-da-feature
 
 # 2. Desenvolver e commitar
-git add .
-git commit -m "feat: descricao da feature"
+git add src/arquivo.jsx
+git commit -m "feat(dashboard): descricao da mudanca"
 
 # 3. Push
-git push -u origin feature/nome-da-feature
+git push -u origin feat/nome-da-feature
 
-# 4. Criar PR no GitHub
+# 4. Criar PR (pelo GitHub ou gh CLI)
+gh pr create --title "feat(dashboard): titulo" --body "corpo do PR"
 
-# 5. Apos merge, deletar branch
+# 5. Apos merge, limpar
 git checkout main
 git pull origin main
-git branch -d feature/nome-da-feature
-git push origin --delete feature/nome-da-feature
+git branch -d feat/nome-da-feature
+git push origin --delete feat/nome-da-feature
 ```
+
+**NUNCA fazer alteracoes direto na main.**
