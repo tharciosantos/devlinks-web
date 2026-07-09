@@ -88,10 +88,10 @@ export function Dashboard() {
     const copiarLink = async () => {
         try {
             await navigator.clipboard.writeText(meuLinkPublico);
-            toast.success('Link copiado para a area de transferencia!');
+            toast.success('Link copiado para a area de transferencia!', { id: 'copiar-link' });
         } catch (err) {
             console.error('Erro ao copiar o link: ', err);
-            toast.error('Nao foi possivel copiar o link.');
+            toast.error('Nao foi possivel copiar o link.', { id: 'copiar-link' });
         }
     };
 
