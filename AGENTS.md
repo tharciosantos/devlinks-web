@@ -115,3 +115,94 @@ chore: configura .gitignore para arquivos de contexto local
 - `PublicProfile.jsx` tem URL da API hardcoded ao inves de usar `VITE_API_URL`
 - Sem tratamento de sessao expirada no frontend
 - Sem componentes reutilizaveis (Button, Input, Card) — tudo inline nos pages
+
+## Design System (Terminal Developer)
+
+Cores sao CSS variables em `src/index.css` via `@theme`:
+
+| Variavel | Valor | Uso |
+|----------|-------|-----|
+| `--color-bg-primary` | #0a0a0a | Fundo principal |
+| `--color-bg-surface` | #111111 | Cards, nav, superficies |
+| `--color-bg-elevated` | #1a1a1a | Elementos elevados |
+| `--color-border-default` | #2a2a2a | Bordas padrao |
+| `--color-text-primary` | #e5e5e5 | Texto principal |
+| `--color-text-secondary` | #aaaaaa | Texto secundario |
+| `--color-text-muted` | #888888 | Texto muted/comentarios |
+| `--color-accent` | #00ff88 | Acento principal (verde) |
+| `--color-accent-alt` | #00d4ff | Hover/links (ciano) |
+| `--color-error` | #ff4444 | Erros |
+
+**NUNCA use classes Tailwind para cores.** Use:
+```jsx
+style={{ backgroundColor: 'var(--color-accent)' }}
+style={{ color: 'var(--color-text-primary)' }}
+```
+
+**Tipografia:** JetBrains Mono (monospace) em toda a interface.
+
+**Bordas:** Cantos retos (0px radius). Nao use `rounded-lg`, `rounded-xl`, etc.
+
+## Variaveis de ambiente
+
+| Variavel | Obrigatoria | Descricao |
+|----------|-------------|-----------|
+| `VITE_API_URL` | Sim | URL base da API (ex: `http://localhost:3000` ou `https://minha-api-lih7.onrender.com`) |
+
+Quando `VITE_API_URL` nao esta definida, o fallback e `http://localhost:3000`.
+
+## Fluxo de autenticacao
+
+```
+1. Login → POST /login → recebe token JWT
+2. Token salvo em localStorage (chave: meu_token_vip)
+3. Interceptor injeta Authorization: Bearer <token> em cada request
+4. RotaPrivada.jsx verifica existencia do token
+5. Logout → remove token → redireciona para /
+```
+
+**Nao ha refresh de token.** A sessao expira sem aviso no frontend.
+
+## Endpoints consumidos pelo frontend
+
+| Metodo | Endpoint | Auth | Descricao |
+|--------|----------|------|-----------|
+| POST | `/login` | Nao | Login, retorna JWT |
+| POST | `/usuario` | Nao | Cadastro de usuario |
+| GET | `/meu-perfil` | Sim | Dados do perfil logado |
+| PATCH | `/usuario/foto` | Sim | Upload de avatar (FormData) |
+| POST | `/usuario/link` | Sim | Criar link |
+| DELETE | `/usuario/link/:id` | Sim | Excluir link |
+| GET | `/p/:id` | Nao | Perfil publico por ID |
+
+## Troubleshooting
+
+| Erro | Causa | Solucao |
+|------|-------|---------|
+| Build falha com "Unexpected token" | Caractere JSX invalido (ex: `>`) | Use `&gt;` ou `{'>'}` |
+| Cypress "ECONNREFUSED" | Backend/dev server off | Inicie ambos antes de rodar testes |
+| Toasts nao aparecem | Toaster nao esta no App.jsx | Verifique import no App.jsx |
+| Cor errada no hover | Usou `--color-accent-alt` | Use `--color-accent` (verde) |
+| Perfil publico nao atualiza | URL hardcoded em PublicProfile.jsx | Bug conhecido, use PerfilPublico.jsx |
+
+## Git workflow
+
+```bash
+# 1. Criar branch
+git checkout -b feature/nome-da-feature
+
+# 2. Desenvolver e commitar
+git add .
+git commit -m "feat: descricao da feature"
+
+# 3. Push
+git push -u origin feature/nome-da-feature
+
+# 4. Criar PR no GitHub
+
+# 5. Apos merge, deletar branch
+git checkout main
+git pull origin main
+git branch -d feature/nome-da-feature
+git push origin --delete feature/nome-da-feature
+```
