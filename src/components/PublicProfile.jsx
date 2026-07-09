@@ -107,15 +107,15 @@ export function PublicProfile() {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block w-full p-5 text-center font-bold border transition-all duration-150 hover:border-[var(--color-accent-alt)] hover:text-[var(--color-accent-alt)]"
+                                className="block w-full p-5 text-center font-bold border transition-all duration-150 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
                                 style={{
                                     backgroundColor: 'var(--color-bg-surface)',
                                     borderColor: 'var(--color-border-default)',
                                     color: 'var(--color-text-primary)',
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.borderColor = 'var(--color-accent-alt)';
-                                    e.currentTarget.style.color = 'var(--color-accent-alt)';
+                                    e.currentTarget.style.borderColor = 'var(--color-accent)';
+                                    e.currentTarget.style.color = 'var(--color-accent)';
                                 }}
                                 onMouseLeave={(e) => {
                                     e.currentTarget.style.borderColor = 'var(--color-border-default)';

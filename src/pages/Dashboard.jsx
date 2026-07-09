@@ -293,7 +293,7 @@ export function Dashboard() {
                                             borderColor: 'var(--color-border-default)',
                                         }}
                                         onMouseEnter={(e) => {
-                                            e.currentTarget.style.borderColor = 'var(--color-accent-alt)';
+                                            e.currentTarget.style.borderColor = 'var(--color-accent)';
                                         }}
                                         onMouseLeave={(e) => {
                                             e.currentTarget.style.borderColor = 'var(--color-border-default)';
