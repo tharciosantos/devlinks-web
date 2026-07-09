@@ -72,8 +72,20 @@ O projeto também tem como objetivo praticar integração entre front-end e API,
 
 ### Perfil público e interface
 
-- Rota pública dinâmica em `/p/:id`.
-- Exibição pública do nome, avatar e links retornados pela API.
+O projeto possui **duas rotas de perfil público** com implementações diferentes:
+
+- **Rota por ID:** `/p/:id` → `PerfilPublico.jsx`
+  - Usa TanStack Query para gerenciamento de estado
+  - Busca dados via `fetch()` com URL da API a partir de `VITE_API_URL`
+  - Exibe nome, avatar e links do perfil
+
+- **Rota por username:** `/p/:username` → `PublicProfile.jsx`
+  - Usa `useState` e `useEffect` para gerenciamento de estado
+  - Busca dados via `fetch()` com URL da API a partir de `VITE_API_URL`
+  - Exibe username, avatar e links do perfil
+
+> **Nota:** Ambas as rotas funcionam, mas `PerfilPublico.jsx` é a implementação mais moderna (usa TanStack Query). `PublicProfile.jsx` é uma implementação alternativa que pode ser consolidada no futuro.
+
 - Abertura dos links em uma nova aba.
 - Notificações de sucesso e erro com React Hot Toast.
 - Layout responsivo construído com Tailwind CSS.
@@ -127,13 +139,21 @@ devlinks-web/
 ├── docs/                        # Imagens utilizadas no README
 ├── public/                      # Arquivos estáticos
 ├── src/
-│   ├── components/              # Rota privada, skeleton e componentes de perfil
-│   ├── pages/                   # Cadastro, login, dashboard e perfil público
+│   ├── components/
+│   │   ├── PublicProfile.jsx    # Perfil público por username (useState + fetch)
+│   │   ├── RotaPrivada.jsx      # Guard de autenticacao
+│   │   └── SkeletonDashboard.jsx # Loading skeleton do dashboard
+│   ├── pages/
+│   │   ├── Cadastro.jsx         # Tela de cadastro
+│   │   ├── Dashboard.jsx        # Painel autenticado (upload foto, CRUD links)
+│   │   ├── Login.jsx            # Tela de login
+│   │   └── PerfilPublico.jsx    # Perfil público por ID (TanStack Query + fetch)
 │   ├── services/
 │   │   └── api.js               # Instância Axios e interceptadores
 │   ├── App.jsx                  # Rotas da aplicação
-│   ├── index.css                # Estilos globais
+│   ├── index.css                # Estilos globais e tokens de design
 │   └── main.jsx                 # Inicialização do React e do Query Client
+├── .env.example                 # Variáveis de ambiente (precisa de correção)
 ├── cypress.config.js            # Configuração do Cypress
 ├── vercel.json                  # Reescrita de rotas da SPA
 └── vite.config.js               # Configuração do Vite e Tailwind CSS
@@ -197,9 +217,9 @@ O Vite informará a URL local no terminal, normalmente [http://localhost:5173](h
 
 | Variável | Finalidade |
 | --- | --- |
-| `VITE_API_URL` | Define a URL base da DevLinks API usada pelo Axios e pela página de perfil público. |
+| `VITE_API_URL` | Define a URL base da DevLinks API usada pelo Axios e pelas páginas de perfil público. |
 
-Quando `VITE_API_URL` não está definida, a instância Axios utiliza `http://localhost:3000` como fallback. A página principal de perfil público acessada por `/p/:id` utiliza diretamente `VITE_API_URL`, portanto a variável deve ser configurada nesse fluxo.
+Quando `VITE_API_URL` não está definida, a instância Axios utiliza `http://localhost:3000` como fallback. As páginas de perfil público (`/p/:id` e `/p/:username`) utilizam diretamente `VITE_API_URL`, portanto a variável deve ser configurada nesses fluxos.
 
 O front-end não utiliza `DATABASE_URL` e não acessa o MongoDB diretamente.
 
@@ -256,7 +276,7 @@ A pipeline `.github/workflows/cypress.yml` executa os testes E2E em pushes para 
 - **Planejado:** substituir as credenciais fixas da suíte Cypress por dados de teste configuráveis.
 - **Planejado:** adicionar scripts do Cypress ao `package.json`.
 - **Planejado:** melhorar o tratamento de sessão expirada no front-end.
-- **Planejado:** revisar e remover componentes ou rotas públicas duplicadas que não façam parte do fluxo principal.
+- **Planejado:** consolidar as duas rotas de perfil público (`PerfilPublico.jsx` e `PublicProfile.jsx`) em uma única implementação.
 - **Planejado:** ampliar a validação e o feedback dos formulários.
 
 ## Autor
