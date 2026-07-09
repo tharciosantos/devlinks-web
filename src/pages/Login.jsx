@@ -8,7 +8,6 @@ export function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,64 +25,84 @@ export function Login() {
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
-            <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8 space-y-6">
+            <div className="max-w-md w-full space-y-8">
                 <div className="text-center">
-                    <h2 className="text-3xl font-extrabold text-gray-900">
-                        Minha API
-                    </h2>
-                    <p className="mt-2 text-sm text-gray-600">
-                        Faça login para acessar o painel
+                    <h1 className="text-5xl font-bold tracking-tight" style={{ color: 'var(--color-accent)' }}>
+                        $ devlinks
+                    </h1>
+                    <p className="mt-4 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                        // acesse seu painel
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            E-mail:
+                        <label
+                            className="block text-xs font-bold mb-2 tracking-wider uppercase"
+                            style={{ color: 'var(--color-text-muted)' }}
+                        >
+                            email
                         </label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Digite seu e-mail"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                            placeholder="voce@email.com"
+                            className="w-full px-4 py-3 text-sm border rounded-none transition-colors"
+                            style={{
+                                backgroundColor: 'var(--color-bg-primary)',
+                                color: 'var(--color-text-primary)',
+                            }}
                             required
                         />
                     </div>
 
                     <div>
-                        <label className="block test-sm font-medium text-gray-700 mb-1">
-                            Senha:
+                        <label
+                            className="block text-xs font-bold mb-2 tracking-wider uppercase"
+                            style={{ color: 'var(--color-text-muted)' }}
+                        >
+                            senha
                         </label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••••"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                            className="w-full px-4 py-3 text-sm border rounded-none transition-colors"
+                            style={{
+                                backgroundColor: 'var(--color-bg-primary)',
+                                color: 'var(--color-text-primary)',
+                            }}
                             required
                         />
                     </div>
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors mt-4"
+                        className="w-full py-3 px-4 text-sm font-bold rounded-none transition-colors mt-6"
+                        style={{
+                            backgroundColor: 'var(--color-accent)',
+                            color: 'var(--color-bg-primary)',
+                        }}
                     >
-                        Entrar no Sistema
+                        &gt; Entrar
                     </button>
                 </form>
-                <div className="text-center mt-6">
-                    <p className="text-sm text-gray-600">
-                        Ainda não tem uma conta?{' '}
-                        <Link to="/cadastro" className="text-blue-600 hover:underline font-semibold">
-                            Cadastre-se aqui
+
+                <div className="text-center pt-4">
+                    <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                        &gt;{' '}
+                        <Link
+                            to="/cadastro"
+                            className="font-bold transition-colors hover:underline"
+                            style={{ color: 'var(--color-accent-alt)' }}
+                        >
+                            criar conta
                         </Link>
                     </p>
                 </div>
             </div>
         </div>
     );
-
-
-
 }
