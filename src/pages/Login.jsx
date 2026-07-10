@@ -6,10 +6,12 @@ import { api } from '../services/api';
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [carregando, setCarregando] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setCarregando(true);
 
         try {
             const { data } = await api.post('/login', { email, password });
@@ -18,8 +20,10 @@ export function Login() {
             toast.success("Login realizado com sucesso!");
             navigate('/dashboard');
 
-        } catch (error) {
-            console.error("Erro capturado no componente:", error);
+        } catch {
+            // toast de erro já é exibido pelo interceptor da api.js
+        } finally {
+            setCarregando(false);
         }
     };
 
@@ -80,13 +84,16 @@ export function Login() {
 
                     <button
                         type="submit"
+                        disabled={carregando}
                         className="w-full py-3 px-4 text-sm font-bold rounded-none transition-colors mt-6"
                         style={{
                             backgroundColor: 'var(--color-accent)',
                             color: 'var(--color-bg-primary)',
+                            opacity: carregando ? 0.6 : 1,
+                            cursor: carregando ? 'not-allowed' : 'pointer',
                         }}
                     >
-                        &gt; Entrar
+                        {carregando ? '> Entrando...' : '> Entrar'}
                     </button>
                 </form>
 

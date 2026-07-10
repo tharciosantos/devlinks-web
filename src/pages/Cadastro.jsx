@@ -7,10 +7,12 @@ export function Cadastro() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [carregando, setCarregando] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setCarregando(true);
 
         try {
             await api.post('/usuario', { name: nome, email, password });
@@ -18,8 +20,10 @@ export function Cadastro() {
             toast.success("Conta criada com sucesso! Você já pode fazer login.");
             navigate('/');
 
-        } catch (error) {
-            console.error("Erro capturado no componente:", error);
+        } catch {
+            // toast de erro já é exibido pelo interceptor da api.js
+        } finally {
+            setCarregando(false);
         }
     };
 
@@ -101,13 +105,16 @@ export function Cadastro() {
 
                     <button
                         type="submit"
+                        disabled={carregando}
                         className="w-full py-3 px-4 text-sm font-bold rounded-none transition-colors mt-6"
                         style={{
                             backgroundColor: 'var(--color-accent)',
                             color: 'var(--color-bg-primary)',
+                            opacity: carregando ? 0.6 : 1,
+                            cursor: carregando ? 'not-allowed' : 'pointer',
                         }}
                     >
-                        &gt; Criar conta
+                        {carregando ? '> Criando conta...' : '> Criar conta'}
                     </button>
                 </form>
 
