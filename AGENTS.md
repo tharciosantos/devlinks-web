@@ -37,7 +37,7 @@ npx cypress open     # UI interativa
 1. `npm install`
 2. Criar `.env` na raiz com `VITE_API_URL=http://localhost:3000` (ou API remota)
 3. `npm run dev`
-4. `.env` e `.env.example` contem `DATABASE_URL` (irrelevante para frontend) — o correto e `VITE_API_URL`
+4. `.env` e `.env.example` contem `VITE_API_URL` — documentacao correta
 
 ## Estrutura de pastas
 
@@ -111,7 +111,6 @@ chore: configura .gitignore para arquivos de contexto local
 
 - Sem testes unitarios (apenas E2E com Cypress)
 - Sem dark mode toggle (tema e fixo escuro)
-- `.env.example` contem `DATABASE_URL` (irrelevante para frontend) — deveria conter `VITE_API_URL`
 - `PublicProfile.jsx` tem URL da API hardcoded ao inves de usar `VITE_API_URL`
 - Sem tratamento de sessao expirada no frontend
 - Sem componentes reutilizaveis (Button, Input, Card) — tudo inline nos pages
