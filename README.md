@@ -194,8 +194,6 @@ Para consumir a API publicada no Render:
 VITE_API_URL=https://minha-api-lih7.onrender.com
 ```
 
-> O `.env.example` atual contém `DATABASE_URL`, mas essa variável não é utilizada pelo front-end. O arquivo precisa ser corrigido futuramente para documentar `VITE_API_URL`. Nenhuma conexão com banco de dados é feita diretamente por este projeto.
-
 ### 4. Inicie a aplicação
 
 ```bash
@@ -220,8 +218,6 @@ O Vite informará a URL local no terminal, normalmente [http://localhost:5173](h
 | `VITE_API_URL` | Define a URL base da DevLinks API usada pelo Axios e pelas páginas de perfil público. |
 
 Quando `VITE_API_URL` não está definida, a instância Axios utiliza `http://localhost:3000` como fallback. As páginas de perfil público (`/p/:id` e `/p/:username`) utilizam diretamente `VITE_API_URL`, portanto a variável deve ser configurada nesses fluxos.
-
-O front-end não utiliza `DATABASE_URL` e não acessa o MongoDB diretamente.
 
 ## Testes
 
@@ -271,7 +267,6 @@ A pipeline `.github/workflows/cypress.yml` executa os testes E2E em pushes para 
 
 ## Próximos passos
 
-- **Planejado:** corrigir o `.env.example` para documentar `VITE_API_URL` e remover `DATABASE_URL`.
 - **Planejado:** ampliar os testes E2E para cadastro, falha de login, avatar, logout e perfil público.
 - **Planejado:** substituir as credenciais fixas da suíte Cypress por dados de teste configuráveis.
 - **Planejado:** adicionar scripts do Cypress ao `package.json`.
