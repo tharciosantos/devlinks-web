@@ -1,14 +1,11 @@
 describe('Fluxo da Plataforma Linktree', () => {
 
-  const emailTeste = Cypress.env('TEST_EMAIL') || 'tharciosantos09@gmail.com';
-  const senhaTeste = Cypress.env('TEST_PASSWORD') || '12345';
-
   it('Deve fazer login com sucesso e carregar o novo Dashboard', () => {
     cy.intercept('POST', '**/login').as('chamadaDeLogin');
 
     cy.visit('/');
-    cy.get('input[type="email"]').type(emailTeste);
-    cy.get('input[type="password"]').type(senhaTeste);
+    cy.get('input[type="email"]').type('tharciosantos09@gmail.com');
+    cy.get('input[type="password"]').type('12345');
     cy.get('button[type="submit"]').click();
 
     cy.wait('@chamadaDeLogin', { timeout: 30000 }).then((interceptacao) => {
@@ -22,8 +19,8 @@ describe('Fluxo da Plataforma Linktree', () => {
 
   it('Deve adicionar e depois excluir um novo link com sucesso no perfil', () => {
     cy.visit('/');
-    cy.get('input[type="email"]').type(emailTeste);
-    cy.get('input[type="password"]').type(senhaTeste);
+    cy.get('input[type="email"]').type('tharciosantos09@gmail.com');
+    cy.get('input[type="password"]').type('12345');
     cy.get('button[type="submit"]').click();
     cy.url().should('include', '/dashboard');
 
