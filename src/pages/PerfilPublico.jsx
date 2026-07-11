@@ -14,6 +14,13 @@ export function PerfilPublico() {
         retry: false
     });
 
+    const obterIniciais = (nome) => {
+        if (!nome) return '??';
+        const partes = nome.trim().split(' ');
+        if (partes.length === 1) return partes[0].substring(0, 2).toUpperCase();
+        return (partes[0][0] + partes[partes.length - 1][0]).toUpperCase();
+    };
+
     if (isLoading) {
         return (
             <div
@@ -42,43 +49,43 @@ export function PerfilPublico() {
 
     return (
         <div
-            className="min-h-screen py-16 px-4"
+            className="min-h-screen flex flex-col items-center py-16 px-4"
             style={{ backgroundColor: 'var(--color-bg-primary)' }}
         >
-            <main className="max-w-lg mx-auto">
-                {/* Avatar */}
-                <div className="flex justify-center mb-6">
+            <main className="w-full max-w-[320px]">
+                {/* Profile */}
+                <div className="text-center my-6">
                     {perfil?.avatar ? (
                         <img
                             src={perfil.avatar}
                             alt={`Avatar de ${perfil.name}`}
-                            className="h-24 w-24 object-cover"
+                            className="w-20 h-20 mx-auto object-cover mb-3"
                             style={{ border: '2px solid var(--color-accent)' }}
                         />
                     ) : (
                         <div
-                            className="h-24 w-24 flex items-center justify-center text-3xl font-bold"
+                            className="w-20 h-20 mx-auto flex items-center justify-center text-green-500 font-bold tracking-tighter mb-3"
                             style={{
                                 backgroundColor: 'var(--color-bg-surface)',
                                 border: '2px solid var(--color-accent)',
-                                color: 'var(--color-text-muted)',
                             }}
                         >
-                            {perfil?.name?.charAt(0).toUpperCase()}
+                            [{obterIniciais(perfil?.name)}]
                         </div>
                     )}
+                    <h3 className="text-white font-bold text-base">
+                        &lt;{perfil?.name || 'usuario'}.dev&gt;
+                    </h3>
+                    <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                        ~ main $ node --version
+                    </p>
+                    <p className="text-[11px] mt-1" style={{ color: 'var(--color-accent)' }}>
+                        v20.11.0 // Full Stack
+                    </p>
                 </div>
 
-                {/* Nome */}
-                <h1
-                    className="text-2xl font-bold text-center mb-8"
-                    style={{ color: 'var(--color-text-primary)' }}
-                >
-                    {perfil?.name}
-                </h1>
-
                 {/* Links */}
-                <div className="space-y-3">
+                <div className="space-y-3 mt-8">
                     {perfil?.links && perfil.links.length > 0 ? (
                         perfil.links.map((link, index) => (
                             <a
@@ -86,22 +93,32 @@ export function PerfilPublico() {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block w-full p-5 text-center font-bold border transition-all duration-150 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                                className="group block p-3 border transition-all flex items-center"
                                 style={{
-                                    backgroundColor: 'var(--color-bg-surface)',
                                     borderColor: 'var(--color-border-default)',
-                                    color: 'var(--color-text-primary)',
+                                    backgroundColor: 'rgba(17, 17, 17, 0.3)',
                                 }}
                                 onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'var(--color-bg-surface)';
                                     e.currentTarget.style.borderColor = 'var(--color-accent)';
-                                    e.currentTarget.style.color = 'var(--color-accent)';
                                 }}
                                 onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'rgba(17, 17, 17, 0.3)';
                                     e.currentTarget.style.borderColor = 'var(--color-border-default)';
-                                    e.currentTarget.style.color = 'var(--color-text-primary)';
                                 }}
                             >
-                                {link.titulo}
+                                <span
+                                    className="mr-2 group-hover:translate-x-1 transition-transform"
+                                    style={{ color: 'var(--color-accent)' }}
+                                >
+                                    ❯
+                                </span>
+                                <span className="text-xs" style={{ color: 'var(--color-text-primary)' }}>
+                                    /{link.titulo?.toLowerCase().replace(/\s+/g, '-') || 'link'}
+                                </span>
+                                <span className="ml-auto text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+                                    [200]
+                                </span>
                             </a>
                         ))
                     ) : (
@@ -112,10 +129,8 @@ export function PerfilPublico() {
                 </div>
 
                 {/* Footer */}
-                <div className="text-center mt-12">
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                        {'> devlinks'}
-                    </p>
+                <div className="text-center mt-12 text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+                    <p className="animate-pulse">_ system online</p>
                 </div>
             </main>
         </div>
