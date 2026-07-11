@@ -5,6 +5,15 @@ import toast from 'react-hot-toast';
 import { api } from '../services/api';
 import { SkeletonDashboard } from '../components/SkeletonDashboard';
 
+const urlSegura = (url) => {
+    try {
+        const parsed = new URL(url);
+        return ['http:', 'https:'].includes(parsed.protocol);
+    } catch {
+        return false;
+    }
+};
+
 export function Dashboard() {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -64,6 +73,11 @@ export function Dashboard() {
         if (!novoTitulo || !novaUrl) {
             return toast.error('Preencha o titulo e a URL!');
         }
+
+        if (!urlSegura(novaUrl)) {
+            return toast.error('URL invalida. Use http:// ou https://');
+        }
+
         mutacaoAdicionarLink.mutate({ titulo: novoTitulo, url: novaUrl });
 
         setNovoTitulo('');
@@ -81,7 +95,7 @@ export function Dashboard() {
         }
     });
 
-    const idDoUsuarioLogado = perfil?._id || perfil?._id;
+    const idDoUsuarioLogado = perfil?._id || perfil?.id;
 
     const meuLinkPublico = idDoUsuarioLogado ? `${window.location.origin}/p/${idDoUsuarioLogado}` : '';
 
@@ -251,6 +265,7 @@ export function Dashboard() {
                                         backgroundColor: 'var(--color-bg-primary)',
                                         color: 'var(--color-text-primary)',
                                     }}
+                                    required
                                 />
                                 <input
                                     type="url"
@@ -262,6 +277,7 @@ export function Dashboard() {
                                         backgroundColor: 'var(--color-bg-primary)',
                                         color: 'var(--color-text-primary)',
                                     }}
+                                    required
                                 />
                                 <button
                                     type="submit"
@@ -311,7 +327,7 @@ export function Dashboard() {
 
                                         <button
                                             onClick={() => {
-                                                const idParaDeletar = link._id || link._id;
+                                                const idParaDeletar = link._id || link.id;
                                                 if (window.confirm("Tem certeza que deseja excluir este link?")) {
                                                     mutacaoDeletarLink.mutate(idParaDeletar);
                                                 }

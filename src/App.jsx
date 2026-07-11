@@ -40,9 +40,9 @@ export function App() {
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/dashboard" element={<RotaPrivada><Dashboard /></RotaPrivada>} />
-        <Route path="*" element={<Navigate to="/" />} />
         <Route path="/p/:id" element={<PerfilPublico />} />
         <Route path="/p/:username" element={<PublicProfile />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   )
