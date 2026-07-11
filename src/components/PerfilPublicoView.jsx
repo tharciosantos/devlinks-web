@@ -47,11 +47,13 @@ export function PerfilPublicoView({ perfil, nomeFallback }) {
                     <h3 className="text-white font-bold text-base">
                         &lt;{nome}.dev&gt;
                     </h3>
-                    <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                        ~ main $ node --version
-                    </p>
-                    <p className="text-[11px] mt-1" style={{ color: 'var(--color-accent)' }}>
-                        v20.11.0 // Full Stack
+                    {perfil?.profession && (
+                        <p className="text-xs mt-2" style={{ color: 'var(--color-text-secondary)' }}>
+                            {perfil.profession}
+                        </p>
+                    )}
+                    <p className="text-[10px] mt-2" style={{ color: 'var(--color-text-muted)' }}>
+                        ~ last login just now
                     </p>
                 </div>
 
