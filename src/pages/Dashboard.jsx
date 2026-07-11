@@ -17,6 +17,8 @@ const urlSegura = (url) => {
 export function Dashboard() {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const [novoTitulo, setNovoTitulo] = useState('');
+    const [novaUrl, setNovaUrl] = useState('');
 
     const { data: perfil, isLoading, isError } = useQuery({
         queryKey: ['meu-perfil'],
@@ -64,8 +66,20 @@ export function Dashboard() {
         }
     });
 
-    const [novoTitulo, setNovoTitulo] = useState('');
-    const [novaUrl, setNovaUrl] = useState('');
+    const mutacaoProfissao = useMutation({
+        mutationFn: async (novaProfissao) => {
+            const { data } = await api.put(`/usuario/${perfil._id}`, { profession: novaProfissao });
+            return data;
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['meu-perfil'] });
+            toast.success('Profissão atualizada!');
+        }
+    });
+
+    const handleSalvarProfissao = (e) => {
+        mutacaoProfissao.mutate(e.target.value);
+    };
 
     const handleAdicionarLink = (e) => {
         e.preventDefault();
@@ -245,9 +259,25 @@ export function Dashboard() {
                                 <h2 className="text-xl font-bold mb-1" style={{ color: 'var(--color-text-primary)' }}>
                                     {perfil.name}
                                 </h2>
-                                <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                                <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
                                     {perfil.email}
                                 </p>
+
+                                {/* Campo Profissão */}
+                                <div className="flex items-center gap-2 justify-center">
+                                    <input
+                                        type="text"
+                                        placeholder="sua profissão (ex: Desenvolvedor)"
+                                        defaultValue={perfil.profession || ''}
+                                        onBlur={handleSalvarProfissao}
+                                        className="px-3 py-1 text-xs border rounded-none transition-colors text-center max-w-[200px]"
+                                        style={{
+                                            backgroundColor: 'var(--color-bg-primary)',
+                                            color: 'var(--color-text-primary)',
+                                            borderColor: 'var(--color-border-default)',
+                                        }}
+                                    />
+                                </div>
                             </div>
 
                             {/* Form Adicionar Link */}
