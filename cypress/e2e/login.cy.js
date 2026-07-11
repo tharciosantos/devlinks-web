@@ -18,10 +18,14 @@ describe('Fluxo da Plataforma Linktree', () => {
   });
 
   it('Deve adicionar e depois excluir um novo link com sucesso no perfil', () => {
+    cy.intercept('POST', '**/login').as('chamadaDeLogin');
+
     cy.visit('/');
     cy.get('input[type="email"]').type('tharciosantos09@gmail.com');
     cy.get('input[type="password"]').type('12345');
     cy.get('button[type="submit"]').click();
+
+    cy.wait('@chamadaDeLogin', { timeout: 30000 });
     cy.url().should('include', '/dashboard');
 
     // 1. Mapeamos as chamadas da API (Criacao e Exclusao)
