@@ -74,13 +74,13 @@ src/
 - Interceptor em `src/services/api.js` injeta `Authorization: Bearer <token>` em todas as requisicoes
 - `RotaPrivada.jsx` verifica APENAS a existencia do token no localStorage — a validacao JWT e feita pelo backend
 - **Nao ha refresh de token.** Sessao expira sem aviso no frontend
-- O componente `PublicProfile.jsx` usa URL hardcoded da API ao inves de `VITE_API_URL` — bug: se mudar a API, esse componente continua apontando para o Render antigo
+- `PublicProfile.jsx` e `PerfilPublico.jsx` usam `fetch()` direto com `VITE_API_URL` (rotas publicas sem necessidade de interceptor de auth)
 
 ## Gotchas importantissimos
 
 1. **Duas rotas de perfil publico com funcoes diferentes:**
    - `/p/:id` → `PerfilPublico.jsx` (usa TanStack Query + fetch)
-   - `/p/:username` → `PublicProfile.jsx` (usa useState + fetch com URL hardcoded)
+   - `/p/:username` → `PublicProfile.jsx` (usa useState + fetch)
    - Ambas fazem fetch direto com `fetch()`, NAO usam a instancia Axios
 
 2. **Tailwind v4 sem tailwind.config.js:** A configuracao e via bloco `@theme` no `src/index.css`. Se precisar adicionar tokens, edite index.css, nao crie um config file
@@ -111,7 +111,7 @@ chore: configura .gitignore para arquivos de contexto local
 
 - Sem testes unitarios (apenas E2E com Cypress)
 - Sem dark mode toggle (tema e fixo escuro)
-- `PublicProfile.jsx` tem URL da API hardcoded ao inves de usar `VITE_API_URL`
+- `PublicProfile.jsx` e `PerfilPublico.jsx` usam `fetch()` direto, nao Axios — sao rotas publicas sem necessidade de interceptor de auth
 - Sem tratamento de sessao expirada no frontend
 - Sem componentes reutilizaveis (Button, Input, Card) — tudo inline nos pages
 
@@ -182,7 +182,7 @@ Quando `VITE_API_URL` nao esta definida, o fallback e `http://localhost:3000`.
 | Cypress "ECONNREFUSED" | Backend/dev server off | Inicie ambos antes de rodar testes |
 | Toasts nao aparecem | Toaster nao esta no App.jsx | Verifique import no App.jsx |
 | Cor errada no hover | Usou `--color-accent-alt` | Use `--color-accent` (verde) |
-| Perfil publico nao atualiza | URL hardcoded em PublicProfile.jsx | Bug conhecido, use PerfilPublico.jsx |
+| Perfil publico nao atualiza | Cache do browser ou dados desatualizados | Limpar cache ou forcar refresh (Ctrl+F5) |
 
 ## Fluxo Git Obrigatorio (PRIORIDADE MAXIMA)
 
