@@ -153,7 +153,7 @@ devlinks-web/
 │   ├── App.jsx                  # Rotas da aplicação
 │   ├── index.css                # Estilos globais e tokens de design
 │   └── main.jsx                 # Inicialização do React e do Query Client
-├── .env.example                 # Variáveis de ambiente (precisa de correção)
+├── .env.example                 # Exemplo de variáveis de ambiente (VITE_API_URL)
 ├── cypress.config.js            # Configuração do Cypress
 ├── vercel.json                  # Reescrita de rotas da SPA
 └── vite.config.js               # Configuração do Vite e Tailwind CSS
