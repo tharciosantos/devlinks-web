@@ -3,11 +3,13 @@ name: Pipeline E2E (Cypress)
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   testes-e2e:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 📥 Checkout do código
         uses: actions/checkout@v4
@@ -15,15 +17,14 @@ jobs:
       - name: ⚙️ Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-        env:
-          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+          node-version: 22
 
       - name: 🤖 Executar Testes Cypress
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: npm run dev
           wait-on: 'http://localhost:5173'
+          wait-on-timeout: 60
         env:
           VITE_API_URL: https://minha-api-lih7.onrender.com
 
